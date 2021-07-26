@@ -7,34 +7,30 @@ var canvas, angle, tower, ground, cannon;
 
 
 
+
 function preload() {
   towerImage = loadImage("./assets/tower.png");
+
 }
 
 function setup() {
-  canvas = createCanvas(1200, 600);
+  canvas = createCanvas(1200,600);
   engine = Engine.create();
   world = engine.world;
 
-  var options={
-    isStatic:true
-  }
-
-  ground = Bodies.rectangle(0,590,0,0,options)
-  World.add(world,ground)
-
-  tower = Bodies.rectangle(80,270,0,0,options)
+  ground = new Ground(0, height - 1, width * 2, 1);
+  tower = new Tower(150, 350, 160, 310);
+  
 
 }
 
-
-
 function draw() {
   background(189);
-
   Engine.update(engine);
-  rect(ground.position.x,ground.position.y,1200,1);
 
-  image(towerImage,tower.position.x,tower.position.y,160,320)
-
+  ground.display();
+  
+  tower.display();
+  
+ 
 }
